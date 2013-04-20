@@ -4,10 +4,11 @@
     <Files>
       <File FileName="../../../FlyingPig/Project/Assets/Scripts/C#/PlatformerController.cs" Line="172" Column="13" />
       <File FileName="../../../FlyingPig/Project/Assets/Scripts/C#/ProgressManager.cs" Line="34" Column="4" />
-      <File FileName="Assets/Scripts/ClickAndGoTo.cs" Line="17" Column="57" />
-      <File FileName="Assets/Scripts/Player.cs" Line="82" Column="30" />
-      <File FileName="Assets/Scripts/Controller.cs" Line="40" Column="10" />
-      <File FileName="Assets/NGUI/Scripts/UI/UISpriteAnimation.cs" Line="16" Column="14" />
+      <File FileName="Assets/Scripts/ClickAndGoTo.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Player.cs" Line="51" Column="24" />
+      <File FileName="Assets/Scripts/Controller.cs" Line="1" Column="1" />
+      <File FileName="Assets/NGUI/Scripts/UI/UISpriteAnimation.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UpNDown.cs" Line="16" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
