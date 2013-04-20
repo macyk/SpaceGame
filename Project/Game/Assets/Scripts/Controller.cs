@@ -5,8 +5,9 @@ public class Controller : MonoBehaviour {
 	public 	List<Player> 	playerList = new List<Player>();
 	public 	float 			wlkingSpeed = 2.0f;
 	public	float			distanceFromItem = 20f;
-	private	Player			mPlayer;
+	public	GameObject		progressBar;
 	
+	private	Player			mPlayer;
 	public	Controller		controller;
 	static 	Controller 		mInstance;
 	public 	static Controller instance { get {return mInstance;}}

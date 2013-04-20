@@ -12,6 +12,8 @@ public class Player : MonoBehaviour {
 	private	bool			mMoveLeft = false;
 	private	float			mDistance = 20f;
 	private	bool			mSetup = false;
+	private	GameObject		mProgressBarGO;
+	private	GameObject		mProgressBar;
 		
 	// Use this for initialization
 	void Start () {
@@ -22,6 +24,9 @@ public class Player : MonoBehaviour {
 		if(Controller.instance){
 			mSpeed = Controller.instance.wlkingSpeed;
 			mDistance = Controller.instance.distanceFromItem;
+			if(Controller.instance.progressBar!=null){
+				mProgressBarGO = Controller.instance.progressBar;
+			}
 			mSetup = true;
 		}
 	}
@@ -33,10 +38,12 @@ public class Player : MonoBehaviour {
 			if(mMoveLeft){
 				if(transform.position.x < (mTargetPos.x + 0.1f)){
 					mMove = false;
+					ShowProgressBar();
 				}
 			}else{
 				if(transform.position.x > (mTargetPos.x - 0.1f)){
 					mMove = false;
+					ShowProgressBar();
 				}
 			}
 			Move();
@@ -84,6 +91,16 @@ public class Player : MonoBehaviour {
 		}else{
 			mMoveLeft = false;
 			return transform.position - mTargetPos;
+		}
+	}
+	
+	void ShowProgressBar(){
+		if(mProgressBarGO!=null){
+			mProgressBar = (GameObject)Instantiate(mProgressBarGO);
+			mProgressBar.transform.parent = transform.parent;
+			mProgressBar.transform.localScale = Vector3.one;
+			Vector3 pos = new Vector3(transform.localPosition.x-80, transform.localPosition.y+140, 0);
+			mProgressBar.transform.localPosition = pos;
 		}
 	}
 }
