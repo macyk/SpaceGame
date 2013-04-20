@@ -2,8 +2,10 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class Controller : MonoBehaviour {
-	public List<Player> playerList = new List<Player>();
-	private	Player	mPlayer;
+	public 	List<Player> 	playerList = new List<Player>();
+	public 	float 			wlkingSpeed = 2.0f;
+	public	float			distanceFromItem = 20f;
+	private	Player			mPlayer;
 	
 	// Use this for initialization
 	void Start () {
@@ -25,7 +27,7 @@ public class Controller : MonoBehaviour {
 	
 	public void MovePlayer(Transform trans){
 		if(mPlayer){
-			mPlayer.MoveTo(trans);
+			mPlayer.MoveTo(trans.position);
 		}else{
 			Debug.Log("No Player Selected");
 		}
