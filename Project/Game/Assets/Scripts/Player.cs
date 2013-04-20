@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 	public 	int 			playerID;
-	public	Controller		controller;
 	private	int 			mPlayerID;
 	private	UISlicedSprite	mUIButton;
 	private	float			mSpeed;
@@ -65,7 +64,7 @@ public class Player : MonoBehaviour {
 	}
 	
 	public void MoveTo(Vector3 pos){
-		Vector3 newPos = new Vector3(pos.x, pos.y, 0);
+		Vector3 newPos = new Vector3(pos.x, pos.y, pos.z);
 		mTargetPos = newPos;
 		mMove = true;
 		Debug.Log("MoveTo: " + mTargetPos);
