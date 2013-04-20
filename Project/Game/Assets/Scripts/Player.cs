@@ -14,6 +14,7 @@ public class Player : MonoBehaviour {
 	private	GameObject			mProgressBarGO;
 	private	GameObject			mProgressBar;
 	private	UISpriteAnimation	mAni;
+	private	UpNDown				mUpNDown;
 		
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour {
 		mUIButton = gameObject.GetComponent<UISlicedSprite>();
 		mAni = gameObject.GetComponent<UISpriteAnimation>();
 		if(mAni)mAni.enabled = false;
+		mUpNDown = gameObject.GetComponent<UpNDown>();
 	}
 	void Init(){
 		if(Controller.instance){
@@ -80,6 +82,7 @@ public class Player : MonoBehaviour {
         delta.Normalize();
         float moveSpeed = mSpeed * Time.deltaTime/10;
 		if(mAni)mAni.enabled = true;
+		if(mUpNDown) mUpNDown.isEnabled = false;
 		if(mMoveLeft){
         	transform.position = transform.position + (delta * moveSpeed);
 			transform.localScale = new Vector3(230, 260,0);
