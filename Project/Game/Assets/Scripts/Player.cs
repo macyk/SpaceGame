@@ -35,6 +35,7 @@ public class Player : MonoBehaviour {
 		
 		if(mMove){
 			if(mMoveLeft){
+				Debug.Log(transform.position.x + " "+(mTargetPos.x + 0.1f) + Time.time);
 				if(transform.position.x < (mTargetPos.x + 0.1f)){
 					mMove = false;
 					ShowProgressBar();
