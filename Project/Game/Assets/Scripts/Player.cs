@@ -11,24 +11,26 @@ public class Player : MonoBehaviour {
 	private	bool			mMove = false;
 	private	bool			mMoveLeft = false;
 	private	float			mDistance = 20f;
+	private	bool			mSetup = false;
 		
 	// Use this for initialization
 	void Start () {
 		mPlayerID = playerID;
 		mUIButton = gameObject.GetComponent<UISlicedSprite>();
-		if(controller){
-			mSpeed = controller.wlkingSpeed;
-			mDistance = controller.distanceFromItem;
-		}else{
-			Debug.LogWarning("Controller is missing");
+	}
+	void Init(){
+		if(Controller.instance){
+			mSpeed = Controller.instance.wlkingSpeed;
+			mDistance = Controller.instance.distanceFromItem;
+			mSetup = true;
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
 		if(mMove){
-			if(mMoveLeft)
-			{
+			if(mMoveLeft){
 				if(transform.position.x < (mTargetPos.x + 0.1f)){
 					mMove = false;
 				}
@@ -39,6 +41,10 @@ public class Player : MonoBehaviour {
 			}
 			Move();
 		}
+		
+		if(!mSetup){
+			Init();
+		}
 	}
 	
 	public int GetID() {
@@ -46,8 +52,8 @@ public class Player : MonoBehaviour {
 	}
 	
 	void OnClick(){
-		if(controller){
-			controller.SetPlayer(this);
+		if(Controller.instance){
+			Controller.instance.SetPlayer(this);
 		}
 	}
 	
