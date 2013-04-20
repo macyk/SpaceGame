@@ -2,22 +2,25 @@ using UnityEngine;
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	public 	int 			playerID;
-	private	int 			mPlayerID;
-	private	UISlicedSprite	mUIButton;
-	private	float			mSpeed;
-	private	Vector3			mTargetPos;
-	private	bool			mMove = false;
-	private	bool			mMoveLeft = false;
-	private	float			mDistance = 20f;
-	private	bool			mSetup = false;
-	private	GameObject		mProgressBarGO;
-	private	GameObject		mProgressBar;
+	public 	int 				playerID;
+	private	int 				mPlayerID;
+	private	UISlicedSprite		mUIButton;
+	private	float				mSpeed;
+	private	Vector3				mTargetPos;
+	private	bool				mMove = false;
+	private	bool				mMoveLeft = false;
+	private	float				mDistance = 20f;
+	private	bool				mSetup = false;
+	private	GameObject			mProgressBarGO;
+	private	GameObject			mProgressBar;
+	private	UISpriteAnimation	mAni;
 		
 	// Use this for initialization
 	void Start () {
 		mPlayerID = playerID;
 		mUIButton = gameObject.GetComponent<UISlicedSprite>();
+		mAni = gameObject.GetComponent<UISpriteAnimation>();
+		if(mAni)mAni.enabled = false;
 	}
 	void Init(){
 		if(Controller.instance){
@@ -76,10 +79,13 @@ public class Player : MonoBehaviour {
 		Vector3 delta = GetTargetPos();
         delta.Normalize();
         float moveSpeed = mSpeed * Time.deltaTime/10;
+		if(mAni)mAni.enabled = true;
 		if(mMoveLeft){
         	transform.position = transform.position + (delta * moveSpeed);
+			transform.localScale = new Vector3(230, 260,0);
 		}else{
 			transform.position = transform.position - (delta * moveSpeed);
+			transform.localScale = new Vector3(-230, 260,0);
 		}
 	}
 	
