@@ -7,9 +7,16 @@ public class Controller : MonoBehaviour {
 	public	float			distanceFromItem = 20f;
 	private	Player			mPlayer;
 	
+	public	Controller		controller;
+	static 	Controller 		mInstance;
+	public 	static Controller instance { get {return mInstance;}}
+	
 	// Use this for initialization
 	void Start () {
-		
+		if(mInstance == null)
+		{
+			mInstance = this;
+		}
 	}
 	
 	// Update is called once per frame

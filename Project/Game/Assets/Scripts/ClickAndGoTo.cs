@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 
 public class ClickAndGoTo : MonoBehaviour {
-	public Controller controller;
 	// Use this for initialization
 	void Start () {
 		
@@ -14,8 +13,8 @@ public class ClickAndGoTo : MonoBehaviour {
 	}
 	
 	void OnClick(){
-		if(controller){
-			controller.MovePlayer(gameObject.transform);
+		if(Controller.instance){
+			Controller.instance.MovePlayer(gameObject.transform);
 		}
 	}
 }
