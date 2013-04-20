@@ -2,20 +2,20 @@ using UnityEngine;
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	public 	int 		playerID;
-	public	Controller	controller;
-	private	int 		mPlayerID;
-	private	UIButton	mUIButton;
-	private	float		mSpeed;
-	private	Vector3		mTargetPos;
-	private	bool		mMove = false;
-	private	bool		mMoveLeft = false;
-	private	float		mDistance = 20f;
-	
+	public 	int 			playerID;
+	public	Controller		controller;
+	private	int 			mPlayerID;
+	private	UISlicedSprite	mUIButton;
+	private	float			mSpeed;
+	private	Vector3			mTargetPos;
+	private	bool			mMove = false;
+	private	bool			mMoveLeft = false;
+	private	float			mDistance = 20f;
+		
 	// Use this for initialization
 	void Start () {
 		mPlayerID = playerID;
-		mUIButton = gameObject.GetComponent<UIButton>();
+		mUIButton = gameObject.GetComponent<UISlicedSprite>();
 		if(controller){
 			mSpeed = controller.wlkingSpeed;
 			mDistance = controller.distanceFromItem;
@@ -31,12 +31,10 @@ public class Player : MonoBehaviour {
 			{
 				if(transform.position.x < (mTargetPos.x + 0.1f)){
 					mMove = false;
-					mUIButton.isEnabled = true;
 				}
 			}else{
 				if(transform.position.x > (mTargetPos.x - 0.1f)){
 					mMove = false;
-					mUIButton.isEnabled = true;
 				}
 			}
 			Move();
@@ -50,7 +48,6 @@ public class Player : MonoBehaviour {
 	void OnClick(){
 		if(controller){
 			controller.SetPlayer(this);
-			mUIButton.isEnabled = false;
 		}
 	}
 	
