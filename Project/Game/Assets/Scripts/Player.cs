@@ -42,14 +42,14 @@ public class Player : MonoBehaviour {
 	void Update () {
 		if(mMove){
 			if(mMoveLeft){
-				if(transform.localPosition.x < (mTargetPos.x + 0.1f)){
-					Debug.Log("transform.position.x: "+transform.localPosition.x + "  "+(mTargetPos.x + 0.1f));
+				if(transform.localPosition.x < (mTargetPos.x + 100f)){
+					//Debug.Log("transform.position.x: "+transform.localPosition.x + "  "+(mTargetPos.x + 0.1f));
 					mMove = false;
 					ShowProgressBar();
 				}
 			}else{
-				if(transform.localPosition.x > (mTargetPos.x - 0.1f)){
-					Debug.Log("transform.position.x: "+transform.localPosition.x + "  "+(mTargetPos.x + 0.1f));
+				if(transform.localPosition.x > (mTargetPos.x - 100f)){
+					//Debug.Log("transform.position.x: "+transform.localPosition.x + "  "+(mTargetPos.x + 0.1f));
 					mMove = false;
 					ShowProgressBar();
 				}
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour {
 	}
 	
 	public void MoveTo(Vector3 pos){
-		Vector3 newPos = new Vector3(pos.x, pos.y, -2);
+		Vector3 newPos = new Vector3(pos.x, transform.localPosition.y, -2);
 		Debug.Log("newPos "+ newPos);
 		mTargetPos = newPos;
 		if(transform.localPosition.x > mTargetPos.x)
