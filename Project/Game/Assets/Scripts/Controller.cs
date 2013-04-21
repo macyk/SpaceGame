@@ -12,6 +12,8 @@ public class Controller : MonoBehaviour {
 	public	MenuMission			sharedMenu;
 	public	List<ClickShowPanel>sidePanels;
 	public	GameObject			missionMenu;
+	public	GameObject			secondMission;
+	public	Transform			missionTran;
 	
 	private	Player			mPlayer;
 	public	Controller		controller;
@@ -65,6 +67,7 @@ public class Controller : MonoBehaviour {
 			mMenu.transform.localPosition = new Vector3(0,0,-2);
 			mScore += 100;
 			UpdateScore();
+			AddNextTask();
 		}
 	}
 	
@@ -99,6 +102,15 @@ public class Controller : MonoBehaviour {
 			sharedMenu.gameObject.SetActive(true);
 			sharedMenu.des.text = txt;
 			sharedMenu.btnTxt.text = btnTxt;
+		}
+	}
+	
+	void AddNextTask(){
+		if(missionTran && secondMission){
+			GameObject obj = (GameObject)Instantiate(secondMission);
+			obj.transform.parent = missionTran.transform;
+			obj.transform.localScale = Vector3.one;
+			obj.transform.localPosition = new Vector3(-32, 218, -9);
 		}
 	}
 }
