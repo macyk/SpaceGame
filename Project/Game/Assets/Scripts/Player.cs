@@ -66,6 +66,8 @@ public class Player : MonoBehaviour {
 			if(mProgress.sliderValue == 1){
 				mIsWorking = false;
 				Controller.instance.ResetClick();
+				Controller.instance.TaskComplete();
+				Destroy(mProgress.gameObject);
 			}
 		}
 	}
