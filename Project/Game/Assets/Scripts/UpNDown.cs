@@ -17,7 +17,6 @@ public class UpNDown : MonoBehaviour {
 		if(isEnabled){
 		    angle += speed * Time.deltaTime;
 		    if (angle > 270) angle -= 360;
-		    Debug.Log(maxUpAndDown * Mathf.Sin(angle * toDegrees));
 			Vector3 pos = new Vector3(transform.localPosition.x, mStartHeight + maxUpAndDown * (1 + Mathf.Sin(angle * toDegrees)) / 2 
 				,transform.localPosition.z);
 		    transform.localPosition = pos;

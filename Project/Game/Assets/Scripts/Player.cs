@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 	public 	int 				playerID;
+	public	float				workingSpeed = 0.1f;
 	private	int 				mPlayerID;
 	private	UISlicedSprite		mUIButton;
 	private	float				mSpeed;
@@ -15,6 +16,8 @@ public class Player : MonoBehaviour {
 	private	GameObject			mProgressBar;
 	private	UISpriteAnimation	mAni;
 	private	UpNDown				mUpNDown;
+	private	bool				mIsWorking = false;
+	private	UISlider			mProgress;
 		
 	// Use this for initialization
 	void Start () {
@@ -40,7 +43,6 @@ public class Player : MonoBehaviour {
 		
 		if(mMove){
 			if(mMoveLeft){
-				Debug.Log(transform.position.x + " "+(mTargetPos.x + 0.1f) + Time.time);
 				if(transform.position.x < (mTargetPos.x + 0.1f)){
 					mMove = false;
 					ShowProgressBar();
@@ -56,6 +58,14 @@ public class Player : MonoBehaviour {
 		
 		if(!mSetup){
 			Init();
+		}
+		
+		if(mIsWorking && mProgress){
+			Debug.Log("mProgress.sliderValue: "+mProgress.sliderValue+" "+Time.deltaTime);
+			mProgress.sliderValue += workingSpeed*Time.deltaTime;
+			if(mProgress.sliderValue == 1){
+				mIsWorking = false;
+			}
 		}
 	}
 	
@@ -73,7 +83,6 @@ public class Player : MonoBehaviour {
 		Vector3 newPos = new Vector3(pos.x, pos.y, pos.z);
 		mTargetPos = newPos;
 		mMove = true;
-		Debug.Log("MoveTo: " + mTargetPos);
 	}
 	
 	void Move()
@@ -105,11 +114,17 @@ public class Player : MonoBehaviour {
 	
 	void ShowProgressBar(){
 		if(mProgressBarGO!=null){
-			mProgressBar = (GameObject)Instantiate(mProgressBarGO);
+			if(!mProgressBar){
+				mProgressBar = (GameObject)Instantiate(mProgressBarGO);
+			}
 			mProgressBar.transform.parent = transform.parent;
 			mProgressBar.transform.localScale = Vector3.one;
 			Vector3 pos = new Vector3(transform.localPosition.x-80, transform.localPosition.y+140, 0);
 			mProgressBar.transform.localPosition = pos;
+			mProgress = mProgressBar.GetComponent<UISlider>();
+			Debug.Log("mProgress: "+mProgress);
+			mProgress.sliderValue = 0;
+			mIsWorking = true;
 		}
 	}
 }
