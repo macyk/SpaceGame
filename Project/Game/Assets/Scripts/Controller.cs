@@ -102,6 +102,7 @@ public class Controller : MonoBehaviour {
 			sharedMenu.gameObject.SetActive(true);
 			sharedMenu.des.text = txt;
 			sharedMenu.btnTxt.text = btnTxt;
+			sharedMenu.title.text = "MISSION";
 		}
 	}
 	
