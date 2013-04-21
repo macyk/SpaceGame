@@ -84,6 +84,14 @@ public class Player : MonoBehaviour {
 		Vector3 newPos = new Vector3(pos.x, pos.y, -2);
 		Debug.Log("newPos "+ newPos);
 		mTargetPos = newPos;
+		if(transform.localPosition.x > mTargetPos.x)
+		{
+			Debug.Log("Left: " +transform.localPosition + " "+ mTargetPos);
+			mMoveLeft = true;
+		}else{
+			mMoveLeft = false;
+			Debug.Log("Right: " +transform.localPosition + " "+ mTargetPos);
+		}
 		mMove = true;
 	}
 	
@@ -104,12 +112,12 @@ public class Player : MonoBehaviour {
 	}
 	
 	Vector3 GetTargetPos(){
-		if(transform.localPosition.x > mTargetPos.x)
+		if(mMoveLeft)
 		{
-			mMoveLeft = true;
+			Debug.Log("Left: " +transform.localPosition + " "+ mTargetPos);
 			return transform.localPosition + mTargetPos;
 		}else{
-			mMoveLeft = false;
+			Debug.Log("Right: " +transform.localPosition + " "+ mTargetPos);
 			return transform.localPosition - mTargetPos;
 		}
 	}
