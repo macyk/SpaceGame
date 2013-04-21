@@ -5,6 +5,7 @@ public class Controller : MonoBehaviour {
 	public 	List<Player> 	playerList = new List<Player>();
 	public 	float 			wlkingSpeed = 2.0f;
 	public	float			distanceFromItem = 20f;
+	public	UILabel			score;
 	public	GameObject		progressBar;
 	public	GameObject		menu;
 	public	Transform		UIPanel;
@@ -15,6 +16,7 @@ public class Controller : MonoBehaviour {
 	public 	static Controller instance { get {return mInstance;}}
 	private	ClickAndGoTo	mClickAGoTo;
 	private	GameObject		mMenu;
+	private	int				mScore = 100;
 	
 	// Use this for initialization
 	void Start () {
@@ -58,6 +60,14 @@ public class Controller : MonoBehaviour {
 			mMenu.transform.parent = UIPanel.gameObject.transform;
 			mMenu.transform.localScale = Vector3.one;
 			mMenu.transform.localPosition = new Vector3(0,0,-2);
+			mScore += 100;
+			UpdateScore();
+		}
+	}
+	
+	void UpdateScore(){
+		if(score){
+			score.text = mScore.ToString();
 		}
 	}
 }
