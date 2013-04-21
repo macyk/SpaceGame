@@ -33,7 +33,7 @@ public class Controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+   		if (Input.GetKeyDown("escape")) Application.Quit();
 	}
 	
 	public Player GetPlayer(){
@@ -101,6 +101,8 @@ public class Controller : MonoBehaviour {
 		if(sharedMenu){
 			sharedMenu.gameObject.SetActive(true);
 			sharedMenu.des.text = txt;
+			sharedMenu.des.transform.localPosition = new Vector3(-300,-20,0);
+			sharedMenu.des.pivot = UIWidget.Pivot.Left;
 			sharedMenu.btnTxt.text = btnTxt;
 			sharedMenu.title.text = "MISSION";
 		}
