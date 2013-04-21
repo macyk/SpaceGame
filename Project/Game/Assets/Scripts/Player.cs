@@ -4,6 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 	public 	int 				playerID;
 	public	float				workingSpeed = 0.1f;
+	public	Vector3				mScale;
 	private	int 				mPlayerID;
 	private	UISlicedSprite		mUIButton;
 	private	float				mSpeed;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour {
 		
 	// Use this for initialization
 	void Start () {
+		mScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 		mPlayerID = playerID;
 		mUIButton = gameObject.GetComponent<UISlicedSprite>();
 		mAni = gameObject.GetComponent<UISpriteAnimation>();
@@ -106,10 +108,10 @@ public class Player : MonoBehaviour {
 		if(mUpNDown) mUpNDown.isEnabled = false;
 		if(mMoveLeft){
         	transform.position = transform.position + (delta * moveSpeed);
-			transform.localScale = new Vector3(230, 260,1);
+			transform.localScale =new Vector3(mScale.x, mScale.y, mScale.z);// new Vector3(230, 260,1);
 		}else{
 			transform.position = transform.position - (delta * moveSpeed);
-			transform.localScale = new Vector3(-230, 260,1);
+			transform.localScale =new Vector3(-mScale.x, mScale.y, mScale.z);// new Vector3(-230, 260,1);
 		}
 	}
 	
