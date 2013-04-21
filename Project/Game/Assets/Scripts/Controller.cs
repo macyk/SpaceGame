@@ -9,7 +9,9 @@ public class Controller : MonoBehaviour {
 	public	GameObject			progressBar;
 	public	GameObject			menu;
 	public	Transform			UIPanel;
+	public	MenuMission			sharedMenu;
 	public	List<ClickShowPanel>sidePanels;
+	public	GameObject			missionMenu;
 	
 	private	Player			mPlayer;
 	public	Controller		controller;
@@ -80,6 +82,23 @@ public class Controller : MonoBehaviour {
 					sidePanels[i].Reset();
 				}
 			}
+		}
+	}
+	
+	public void RestAllSideList(){
+		if(sidePanels.Count>0){
+			for(int i = 0; i<sidePanels.Count; i++)
+			{
+				sidePanels[i].Reset();
+			}
+		}
+	}
+	
+	public void ShowMission(string txt, string btnTxt){
+		if(sharedMenu){
+			sharedMenu.gameObject.SetActive(true);
+			sharedMenu.des.text = txt;
+			sharedMenu.btnTxt.text = btnTxt;
 		}
 	}
 }
