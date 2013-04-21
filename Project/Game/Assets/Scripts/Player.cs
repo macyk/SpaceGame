@@ -40,15 +40,16 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 		if(mMove){
 			if(mMoveLeft){
-				if(transform.position.x < (mTargetPos.x + 0.1f)){
+				if(transform.localPosition.x < (mTargetPos.x + 0.1f)){
+					Debug.Log("transform.position.x: "+transform.localPosition.x + "  "+(mTargetPos.x + 0.1f));
 					mMove = false;
 					ShowProgressBar();
 				}
 			}else{
-				if(transform.position.x > (mTargetPos.x - 0.1f)){
+				if(transform.localPosition.x > (mTargetPos.x - 0.1f)){
+					Debug.Log("transform.position.x: "+transform.localPosition.x + "  "+(mTargetPos.x + 0.1f));
 					mMove = false;
 					ShowProgressBar();
 				}
@@ -61,10 +62,10 @@ public class Player : MonoBehaviour {
 		}
 		
 		if(mIsWorking && mProgress){
-			Debug.Log("mProgress.sliderValue: "+mProgress.sliderValue+" "+Time.deltaTime);
 			mProgress.sliderValue += workingSpeed*Time.deltaTime;
 			if(mProgress.sliderValue == 1){
 				mIsWorking = false;
+				Controller.instance.ResetClick();
 			}
 		}
 	}
@@ -80,7 +81,8 @@ public class Player : MonoBehaviour {
 	}
 	
 	public void MoveTo(Vector3 pos){
-		Vector3 newPos = new Vector3(pos.x, pos.y, pos.z);
+		Vector3 newPos = new Vector3(pos.x, pos.y, -2);
+		Debug.Log("newPos "+ newPos);
 		mTargetPos = newPos;
 		mMove = true;
 	}
@@ -94,21 +96,21 @@ public class Player : MonoBehaviour {
 		if(mUpNDown) mUpNDown.isEnabled = false;
 		if(mMoveLeft){
         	transform.position = transform.position + (delta * moveSpeed);
-			transform.localScale = new Vector3(230, 260,0);
+			transform.localScale = new Vector3(230, 260,1);
 		}else{
 			transform.position = transform.position - (delta * moveSpeed);
-			transform.localScale = new Vector3(-230, 260,0);
+			transform.localScale = new Vector3(-230, 260,1);
 		}
 	}
 	
 	Vector3 GetTargetPos(){
-		if(transform.position.x > mTargetPos.x)
+		if(transform.localPosition.x > mTargetPos.x)
 		{
 			mMoveLeft = true;
-			return transform.position + mTargetPos;
+			return transform.localPosition + mTargetPos;
 		}else{
 			mMoveLeft = false;
-			return transform.position - mTargetPos;
+			return transform.localPosition - mTargetPos;
 		}
 	}
 	
@@ -122,7 +124,6 @@ public class Player : MonoBehaviour {
 			Vector3 pos = new Vector3(transform.localPosition.x-80, transform.localPosition.y+140, -1);
 			mProgressBar.transform.localPosition = pos;
 			mProgress = mProgressBar.GetComponent<UISlider>();
-			Debug.Log("mProgress: "+mProgress);
 			mProgress.sliderValue = 0;
 			mIsWorking = true;
 		}

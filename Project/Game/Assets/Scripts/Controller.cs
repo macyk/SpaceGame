@@ -11,6 +11,7 @@ public class Controller : MonoBehaviour {
 	public	Controller		controller;
 	static 	Controller 		mInstance;
 	public 	static Controller instance { get {return mInstance;}}
+	private	ClickAndGoTo	mClickAGoTo;
 	
 	// Use this for initialization
 	void Start () {
@@ -33,11 +34,18 @@ public class Controller : MonoBehaviour {
 		mPlayer = player;
 	}
 	
-	public void MovePlayer(Transform trans){
+	public void MovePlayer(Transform trans, ClickAndGoTo click){
 		if(mPlayer){
-			mPlayer.MoveTo(trans.position);
+			mClickAGoTo = click;
+			mPlayer.MoveTo(trans.localPosition);
 		}else{
 			Debug.Log("No Player Selected");
+		}
+	}
+	
+	public void ResetClick(){
+		if(mClickAGoTo){
+			mClickAGoTo.Reset();
 		}
 	}
 }
