@@ -2,13 +2,14 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class Controller : MonoBehaviour {
-	public 	List<Player> 	playerList = new List<Player>();
-	public 	float 			wlkingSpeed = 2.0f;
-	public	float			distanceFromItem = 20f;
-	public	UILabel			score;
-	public	GameObject		progressBar;
-	public	GameObject		menu;
-	public	Transform		UIPanel;
+	public 	List<Player> 		playerList = new List<Player>();
+	public 	float 				wlkingSpeed = 2.0f;
+	public	float				distanceFromItem = 20f;
+	public	UILabel				score;
+	public	GameObject			progressBar;
+	public	GameObject			menu;
+	public	Transform			UIPanel;
+	public	List<ClickShowPanel>sidePanels;
 	
 	private	Player			mPlayer;
 	public	Controller		controller;
@@ -68,6 +69,17 @@ public class Controller : MonoBehaviour {
 	void UpdateScore(){
 		if(score){
 			score.text = mScore.ToString();
+		}
+	}
+	
+	public void RestSideList(ClickShowPanel obj){
+		if(sidePanels.Count>0){
+			for(int i = 0; i<sidePanels.Count; i++)
+			{
+				if(obj!= sidePanels[i]){
+					sidePanels[i].Reset();
+				}
+			}
 		}
 	}
 }
