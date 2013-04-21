@@ -119,7 +119,7 @@ public class Player : MonoBehaviour {
 			}
 			mProgressBar.transform.parent = transform.parent;
 			mProgressBar.transform.localScale = Vector3.one;
-			Vector3 pos = new Vector3(transform.localPosition.x-80, transform.localPosition.y+140, 0);
+			Vector3 pos = new Vector3(transform.localPosition.x-80, transform.localPosition.y+140, -1);
 			mProgressBar.transform.localPosition = pos;
 			mProgress = mProgressBar.GetComponent<UISlider>();
 			Debug.Log("mProgress: "+mProgress);
